@@ -8,6 +8,7 @@ signal wall_hit
 
 @onready var apple: Segment = $Apple
 @onready var walls: Node = $Walls
+@onready var appleMoveTimer: Timer = $AppleMoveTimer
 
 
 var cells: Vector2
@@ -20,12 +21,14 @@ func _ready() -> void:
 	)
 	
 	apple.area_entered.connect(on_apple_area_entered)
+	appleMoveTimer.timeout.connect(on_apple_move_timer_timeout)
 	
 	for wall: Area2D in walls.get_children():
 		wall.area_entered.connect(on_wall_area_entered)
 
 	# спавним яблоко в случайную точку на поле
 	set_random_apple_position()
+	appleMoveTimer.start()
 
 func set_random_apple_position() -> void:
 	# получаем рандомное число в диапазоне от 1 до CELLS-2. Диапазон именно 
@@ -51,6 +54,10 @@ func set_random_apple_position() -> void:
 	
 	# во всех остальных случаях - перемещаем яблоко по полученной позиции
 	apple.position = newPosition
+	
+	# рестартим таймер с рандомным ожиданием от 10 до 20 сек
+	appleMoveTimer.wait_time = randi_range(10, 20)
+	appleMoveTimer.start()
 
 
 func on_apple_area_entered(area: Segment) -> void:
@@ -62,3 +69,8 @@ func on_apple_area_entered(area: Segment) -> void:
 func on_wall_area_entered(area: Area2D) -> void:
 	if area.get_collision_layer_value(Globals.Collision.PLAYER):
 		wall_hit.emit()
+
+
+func on_apple_move_timer_timeout() -> void:
+	set_random_apple_position()
+
