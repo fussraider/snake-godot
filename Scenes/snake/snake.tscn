@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dumrhhka33j6n"]
+
+[ext_resource type="Script" path="res://Scenes/snake/snake.gd" id="1_cyxhc"]
+
+[node name="Snake" type="Node2D"]
+script = ExtResource("1_cyxhc")
+
+[node name="Segments" type="Node" parent="."]
+
+[node name="StepTimer" type="Timer" parent="."]
+wait_time = 0.2

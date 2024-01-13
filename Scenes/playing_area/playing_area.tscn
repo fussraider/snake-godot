@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cb67lggub1wun"]
+
+[ext_resource type="Script" path="res://Scenes/playing_area/playing_area.gd" id="1_ub5bu"]
+[ext_resource type="PackedScene" uid="uid://doyc27dr18xl1" path="res://Scenes/wall/wall.tscn" id="2_2gj8o"]
+[ext_resource type="PackedScene" uid="uid://ckftwk58fb0o0" path="res://Scenes/segment/segment.tscn" id="2_u50e2"]
+
+[node name="PlayingArea" type="Node"]
+script = ExtResource("1_ub5bu")
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="Left" parent="Walls" instance=ExtResource("2_2gj8o")]
+position = Vector2(16, 384)
+
+[node name="Right" parent="Walls" instance=ExtResource("2_2gj8o")]
+position = Vector2(752, 384)
+
+[node name="Top" parent="Walls" instance=ExtResource("2_2gj8o")]
+position = Vector2(384, 16)
+rotation = 1.5708
+
+[node name="Bottom" parent="Walls" instance=ExtResource("2_2gj8o")]
+position = Vector2(384, 752)
+rotation = 1.5708
+
+[node name="Apple" parent="." instance=ExtResource("2_u50e2")]
+position = Vector2(192, 624)
+collision_layer = 4
+collision_mask = 2

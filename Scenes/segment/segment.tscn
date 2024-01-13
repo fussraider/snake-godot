@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckftwk58fb0o0"]
+
+[ext_resource type="Script" path="res://Scenes/segment/segment.gd" id="1_l2vq5"]
+[ext_resource type="Texture2D" uid="uid://mknpw4crrb4" path="res://Sprites/segment.png" id="1_nu2vn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8msee"]
+size = Vector2(31, 31)
+
+[node name="Segment" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_l2vq5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nu2vn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8msee")
